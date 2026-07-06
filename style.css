@@ -20,9 +20,9 @@ body{
     justify-content: center;
 }
 .card{
-    width: 470px;
-    height: 700px;
-    background-image:url("download.png");
+    width: 500px;
+    height: 750px;
+    background-image:url("daypic.png");
     background-size:  cover;
     background-repeat: no-repeat;
     margin: 100px ;
@@ -30,12 +30,20 @@ body{
     padding: 40px 35px;
     text-align: center;
     overflow-y: auto;
+    transition: filter 0.9s;
+    scrollbar-width: none;
 }
+.card.night{
+    background-image: url("download.png");
+    filter: brightness(0.8) ;
+}
+
 .search{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
 }
 .search input{
     border: 0;
@@ -45,25 +53,40 @@ body{
     padding: 10px 25px;
     height: 60px;
     border-radius: 30px;
-    flex :1;
-    margin-right: 16px;
+    flex: 1;
     font-size: 18px;
+}
+#theme{
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .search button{
     border: 0;
     outline: 0;
     background: #ebfffc;
     border-radius: 50%;
-    width :60px;
+    width: 60px;
     height: 60px;
+    flex-shrink: 0;
     cursor: pointer;
 }
 .search button img{
     width: 16px;
 }
+
 .wIcon{
     width: 170px;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .weather h1{
     font-size: 80px;
@@ -80,4 +103,94 @@ body{
     justify-content: space-between;
     padding: 0 20px;
     margin-top: 50px;
+}
+.forecast{
+    margin-top: 20px;
+    font-weight: 100;
+    margin-bottom: 25px;
+
+}
+.forecast h3{
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+.day1,.day2,.day2,.day3,.day4,.day5{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 500;
+    background: rgba(255,255,255,0.4);
+    border-radius: 15px;
+    padding: 12px 18px;
+    margin-top: 12px;
+}
+.fav{
+    display: flex;
+    justify-content: right;
+    margin-top: 35px;
+}
+
+#favB{
+    height: 60px;
+    width:60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #ebfffc;
+    border: 0;
+
+}
+#favImg{
+    height: 30px;
+    width:30px;
+}
+.Sfav h3{
+    padding: 25px;
+}
+
+.favList{
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.favChip{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 25px;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 500;
+    
+}
+
+.favChip:hover{
+    background: rgba(255,255,255,0.3);
+}
+
+.favCityName{
+    cursor: pointer;
+}
+
+.favRemove{
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.7;
+    transition:transform 0.2s;
+}
+
+.favRemove:hover{
+    opacity: 1;
+    transform: scale(1.15);
 }
