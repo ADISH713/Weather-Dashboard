@@ -11,6 +11,8 @@ const favB = document.getElementById("favB");
 const favImg = document.getElementById("favImg");
 const favList = document.querySelector(".favList");
 
+const spinner = document.querySelector(".spinner");
+
 let  isFav = false;
 let cCity ="";
 
@@ -48,6 +50,7 @@ function renderFav(){
         cityName.textContent = city;
         cityName.classList.add("favCityName");
         cityName.addEventListener("click",()=>{
+            searchBox.value = "";
             checkW(city);
         });
         const removeBtn = document.createElement("span");
@@ -83,8 +86,23 @@ favB.addEventListener("click",()=>{
     updateFav();
     renderFav();
 });
+
+function debounce(fn,delay){
+    let timer = null;
+    return(...args)=>{
+        clearTimeout(timer);
+        timer = setTimeout(()=>fn(...args),delay);
+    };
+}
+
 async function checkW(city){
+    spinner.classList.add("active");
+    try{
     const response = await fetch(apiUrl+city+`&appid=${apiKey}`);
+    if(!response.ok && response.status !== 404){
+        throw new Error(`weather API error:${response.status}`)
+    }
+
     var data = await response.json();
 
     if(data.cod == "404"){
@@ -94,6 +112,7 @@ async function checkW(city){
         document.querySelector(".wind").innerHTML = "----";
         cCity = "";
         updateFav();
+        spinner.classList.remove("active");
         return;
     }
 
@@ -107,10 +126,20 @@ async function checkW(city){
     wicon.src = data.weather[0].main.toLowerCase() + ".png";
 
     updateFav();
+    spinner.classList.remove("active");
 }
-
+catch(error){
+    console.error("Couldn't fetch weather:", error);
+    showError("Something went wrong");
+    spinner.classList.remove("active");
+}
+}
+const debouncedSearch = debounce((city)=>checkW(city),800);
 searchBtn.addEventListener("click",()=>{
-    checkW(searchBox.value);
+    debouncedSearch(searchBox.value);
+});
+searchBox.addEventListener("input",()=>{
+    debouncedSearch(searchBox.value);
 });
 
 checkW("New York");
