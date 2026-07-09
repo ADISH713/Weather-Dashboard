@@ -56,8 +56,7 @@ function renderFav(){
         const removeBtn = document.createElement("span");
         removeBtn.textContent = " 🗑️";
         removeBtn.classList.add("favRemove");
-        removeBtn.addEventListener("click",(e)=>{
-            e.stopPropagation();
+        removeBtn.addEventListener("click",()=>{
             favorites = favorites.filter(c=>c!==city);
             saveFav();
             renderFav();
@@ -121,7 +120,7 @@ async function checkW(city){
     document.querySelector(".city").innerHTML = data.name;
     document.querySelector(".temp").innerHTML = Math.round(data.main.temp)+"°C";
     document.querySelector(".humidity").innerHTML = data.main.humidity+"%";
-    document.querySelector(".wind").innerHTML = data.wind.speed+"km/h";
+    document.querySelector(".wind").innerHTML = data.wind.speed+" m/s";
 
     wicon.src = data.weather[0].main.toLowerCase() + ".png";
 
@@ -130,7 +129,6 @@ async function checkW(city){
 }
 catch(error){
     console.error("Couldn't fetch weather:", error);
-    showError("Something went wrong");
     spinner.classList.remove("active");
 }
 }

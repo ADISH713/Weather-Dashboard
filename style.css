@@ -211,3 +211,60 @@ body{
 @keyframes spin{
     to{ transform: rotate(360deg);}
 }
+/* ========= MEDIA QUERY: PHONE ========= */
+@media (max-width: 600px) {
+    html, body{
+        overflow-x: hidden;
+    }
+
+    body{
+        background: transparent;
+    }
+
+    .card{
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        min-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        padding: 30px 20px;
+        overflow-x: hidden;
+        overflow-wrap: break-word;
+    }
+
+    .search{
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+
+    .search input{
+        min-width: 0;
+        flex: 1 1 0;
+        padding: 10px 16px;
+        font-size: 15px;
+    }
+
+    #theme,
+    .search button{
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+    }
+
+    .wIcon{
+        width: 130px;
+    }
+
+    .weather h1{
+        font-size: 60px;
+    }
+
+    .weather h2{
+        font-size: 32px;
+    }
+
+    .favChip{
+        overflow-wrap: break-word;
+    }
+  
